@@ -6,5 +6,8 @@
 
 .class a {
 
+}
 
+#navigation li {
+	display: inline;
 }
