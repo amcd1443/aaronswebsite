@@ -1,11 +1,28 @@
 
-			function myFunction() {
-    		document.getElementById("demo").innerHTML = "display bk page";
+			function myFunction(button) {
+    			showLocations(startLocations);
+    		
+    				
+    			var buttons = document.getElementById('navigation').getElementsByTagName('button');
+    			for (var i = 0; i < buttons.length; i++) {
+    				buttons[i].className = '';
+    			}
+
+    			button.className = 'active';
+    			
     		}
 
-    		function bkMustVisits() {
+    		function bkMustVisits(button) {
     			var bkLocations = getBKLocations();
     			showLocations(bkLocations);
+
+    			
+    			var buttons = document.getElementById('navigation').getElementsByTagName('button');
+    			for (var i = 0; i < buttons.length; i++) {
+    				buttons[i].className = '';
+    			}
+
+    			button.className = 'active';
     		}
 
 
@@ -19,7 +36,7 @@
 				locations.push({name: "Pasquale Jones", description:"sister spot from Charlie bird people on Kenmare"});
 				locations.push({name: "Gelato & Grand", description:"LES, Italian"});
 				locations.push({name: "Kitty's a-Go-Go", description:"off shoot of Kitty's canteen, same type of food, LES"});
-				locations.push({name: "The Garret East", description:"cool décor cocktail bar, offshoot of west village bar"});
+				locations.push({name: "Garret East", description:"cool decor cocktail bar, offshoot of west village bar"});
 				locations.push({name: "Visana and Pisa Pizza", description:"speakeasy/dance lounge in the back of a pizza spot"});
 				locations.push({name: "Riddling Window", description:"underground bar focusing on bubbly, Greenwich village"});
 				locations.push({name: "Cafe Altro Paradiso", description:"Italian food from same people as Estela, on spring street"});
@@ -44,7 +61,7 @@
 				locations.push({name: "La Contenta", description:"Mexican"});
 				locations.push({name: "Houseman", description:"good food in soho, burger is supposed to be good"});
 				locations.push({name: "Seamore's", description:"fresh seafood made healthy, nolita"});
-				locations.push({name: "The Clocktower", description:"British restaurant, second floor of the edition hotel, plan to eat"});
+				locations.push({name: "Clocktower", description:"British restaurant, second floor of the edition hotel, plan to eat"});
 				locations.push({name: "Royale", description:"great burger, in alphabet city, outdoor patio in the back, kind of divey"});
 				locations.push({name: "Vol de nuit", description:"two story Belgian spot with an outdoor courtyard in Greenwich village"});
 				locations.push({name: "Revival NYC", description:"Irving place, outdoor back patio under trees"});
@@ -86,7 +103,7 @@
 				locations.push({name: "Subject", description:"Suffolk and Houston, drink spot"});
 				locations.push({name: "Huertas", description:"tapas in east village, brand new"});	
 				locations.push({name: "Cafe El Presidente", description:"Mexican spot in flatiron"});
-				locations.push({name: "The Pavilion", description:"in union square"});
+				locations.push({name: "Pavilion", description:"in union square"});
 				locations.push({name: "Rintintin", description:"nolita, Mediterranean date spot"});
 				locations.push({name: "Horchata", description:"next level Mexican spot in Greenwich village"});	
 				locations.push({name: "Batard", description:"TriBeCa, try the octopus pastrami"});
@@ -97,7 +114,7 @@
 				locations.push({name: "Rosette", description:"LES"});
 				locations.push({name: "Mission Cantina", description:"follow up to mission Chinese, orchard and Stanton"});
 				locations.push({name: "Telepan Local", description:"west village, casual American cuisine"});	
-				locations.push({name: "The Clam", description:"west village, looks excellent"});
+				locations.push({name: "Clam", description:"west village, looks excellent"});
 				locations.push({name: "Wallflower", description:"must do, same owners as mother's ruin, west village"});
 				locations.push({name: "Il Principe", description:"tribeca, rustic Italian food, in Hotel Hugo"});	
 				locations.push({name: "Heartwood", description:"Chelsea"});
@@ -128,11 +145,13 @@
 				locations.push({name: "Covina", description:"Italian restaurant at the bottom of the Park South hotel"});
 				locations.push({name: "Eataly", description:"new downtown location at 4 World Trade Center"});
 				return locations;
+
     		}
 
     		function showLocations (locations) {
 
-				var locationList = document.getElementById("locationList");
+				var locationList = document.getElementById("locationList")
+				  , locationListHtml = ''
 
 				var googleLinkBase = "https://maps.google.com/maps?q=";
 				
@@ -140,10 +159,12 @@
 					var individualLocation = locations[i];
 
 					var elementText = "<li> "+ individualLocation.name + " - " + individualLocation.description;
-					elementText += " see on " + "<a href= " + googleLinkBase + individualLocation.name + ">click here</a>" + "  </li>";
+					elementText += " see on " + "<a href= "+googleLinkBase+encodeURIComponent(individualLocation.name) + ">click here</a>" + "  </li>";
 
-					locationList.innerHTML += elementText;
-				}	
+					locationListHtml += elementText;
+				}
+
+				locationList.innerHTML = locationListHtml;
     		}
 
     		function getBKLocations() {
@@ -158,7 +179,81 @@
     			brooklynLocations.push({name: "arla Halls Southern Kitchen", description:" downtown Brooklyn, Nashville hot chicken"});
     			brooklynLocations.push({name: "Midnights", description:" serves food till 4am, good music apparently, lamb burger, N 6th between Berry and Bedford"});
     			brooklynLocations.push({name: "Karasu", description:" secret Japanese izakaya, go to back of Walters restaurant and go through unmarked door, speakeasy, Japanese whiskey and sake, small food menu"});
-    			brooklynLocations.push({name: "The Big Whiskey", description:" Williamsburg huge space"});
+    			brooklynLocations.push({name: "Big Whiskey", description:" Williamsburg huge space"});
+    			brooklynLocations.push({name: "Starlight ", description:" steaks east Williamsburg"});
+    			brooklynLocations.push({name: "Aurora ", description:" outdoor seating, brunch, on Grand St"});
+    			brooklynLocations.push({name: "Anella ", description:" Franklin st, Greenpoint, brunch and outdoor seating"});
+    			brooklynLocations.push({name: "Rider ", description:" on N 6th, two floors"});
+    			brooklynLocations.push({name: "Emmy Squared ", description:" new spot by the pizza place Emily, get pizza and spicy chicken sandwich"});
+    			brooklynLocations.push({name: "Cherry Point ", description:" Greenpoint, steak frites"});
+    			brooklynLocations.push({name: "Brooklyn Barge ", description:" scenic view of city, on Milton St, oysters on a barge in greenpoint"});
+    			brooklynLocations.push({name: "Don Muang Airport ", description:" new Thai spot, inside Babys All Right"});
+    			brooklynLocations.push({name: "Hail Mary ", description:" new take on American diner, Greenpoint"});
+    			brooklynLocations.push({name: "Alameda ", description:" Greenpoint, must try for cocktails and food"});
+    			brooklynLocations.push({name: "Achilles Heel ", description:" cocktail bar, West St, Greenpoint, wooden stove with fire place "});
+    			brooklynLocations.push({name: "Smells ", description:" Greenpoint, great food, nice back garden as well thats outdoors"});
+    			brooklynLocations.push({name: "Pauli Gees ", description:" really really good pizza, Greenpoint"});
+    			brooklynLocations.push({name: "Glassserie ", description:" Greenpoint almost in Queens, Mediterranean food, great date spot"});
+    			brooklynLocations.push({name: "Milk & Roses ", description:" awesome outdoor space, romantic, Italian sort of food"});
+    			brooklynLocations.push({name: "Enids ", description:" Greenpoint, outdoor seating"});
+    			brooklynLocations.push({name: "Park Luncheonette ", description:" across from McCarren Park, good for brunch"});
+    			brooklynLocations.push({name: "Acapulco Deli ", description:" great Mexican food"});
+    			brooklynLocations.push({name: "Nights and Weekends ", description:" across from Five Leaves, good to grab drinks has some food options"});
+    			brooklynLocations.push({name: "Frankels delicatessen ", description:" green point, Jewish deli"});
+    			brooklynLocations.push({name: "Barano ", description:" Italian restaurant under Williamsburg bridge, get the pasta not pizza"});
+    			brooklynLocations.push({name: "Lilia ", description:" on Union avenue, must try for dinner"});
+    			brooklynLocations.push({name: "Post Office ", description:" must go, great food but also great place for drinks, whiskey"});
+    			brooklynLocations.push({name: "OTB ", description:" great food and drinks, owned by same people as Post Office"});
+    			brooklynLocations.push({name: "Commodore ", description:" great for drinks but also serves awesome fried chicken"});
+    			brooklynLocations.push({name: "Kinfolk 90 ", description:" great bar"});
+    			brooklynLocations.push({name: "Cantina Royal ", description:" Mexican food, N 3rd"});
+    			brooklynLocations.push({name: "Vinegar Hill House ", description:" outdoor dining also great drinks"});
+    			brooklynLocations.push({name: "Featherweight ", description:" speakeasy cocktail den"});
+    			brooklynLocations.push({name: "Freehold ", description:" giant bar on S 3rd street, indoor and outdoor"});
+    			brooklynLocations.push({name: "Richardson ", description:" cocktails, east Williamsburg"});
+    			brooklynLocations.push({name: "Rocky Sullivans ", description:" lobster, rooftop, great views of the city, redhook"});
+    			brooklynLocations.push({name: "Reclamation Bar ", description:" cocktails"});
+    			brooklynLocations.push({name: "Butter & Scotch ", description:" dessert spot"});
+    			brooklynLocations.push({name: "Barbes ", description:" jazz"});
+    			brooklynLocations.push({name: "Inkwell Cafe ", description:" comedy and jazz chafe"});
+    			brooklynLocations.push({name: "Mayflower ", description:" cocktail bar in Fort Greene"});
+    			brooklynLocations.push({name: "Threes Brewing ", description:" next to Brooklyn Boulder, a Brewery bar and event space"});
+    			brooklynLocations.push({name: "Grand Central Oyster Bar ", description:" brooklyn edition, on 5th avenue"});
+    			brooklynLocations.push({name: "Alameda ", description:" cocktails"});
+    			brooklynLocations.push({name: "Grand Army ", description:" oysters and cocktails"});
+    			brooklynLocations.push({name: "Ramona ", description:" new sister spot from Elsa in Greenpoint"});
+    			brooklynLocations.push({name: "Enids ", description:" American comfort food, near McCarren Park"});
+    			brooklynLocations.push({name: "Saint Austere ", description:" oyster happy hour, need to try the Brussel sprouts"});
+    			brooklynLocations.push({name: "Antica Pesa ", description:" wine, fire place, bit more expensive, maybe good to take parents"});
+    			brooklynLocations.push({name: "Llama Inn ", description:" under BQE on Withers Street, Peruvian restaurant, has a rooftop too"});
+    			brooklynLocations.push({name: "Meat Hook Sandwich Shop ", description:" Williamsburg"});
+    			brooklynLocations.push({name: "Meadowsweet ", description:" Williamsburg place to take parents"});
+    			brooklynLocations.push({name: "Humboldt & Jackson ", description:" Williamsburg, American food,  different rotating chefs"});
+    			brooklynLocations.push({name: "Charleston ", description:" free personal pan pizza with every beer you order from 12-8pm, one dollar after 8pm, Williamsburg"});
+    			brooklynLocations.push({name: "Featherweight ", description:" Williamsburg cocktail bar"});
+    			brooklynLocations.push({name: "Action Burger ", description:" Williamsburg"});
+    			brooklynLocations.push({name: "Allswell ", description:" brunch on Bedford avenue"});
+    			brooklynLocations.push({name: "Brooklyn Star ", description:" brunch on Lorimer St"});
+    			brooklynLocations.push({name: "Walter Foods ", description:" back patio, go for brunch, on Grand St"});
+    			brooklynLocations.push({name: "Reynard ", description:" brunch on Wythe, upscale brunch"});
+    			brooklynLocations.push({name: "Le Fanfare ", description:" Italian food in greenpoint, also has live jazz"});
+    			brooklynLocations.push({name: "Sauvage ", description:" new sister restaurant to Maison Premiere in Greenpoint, unsure when it will open"});
+    			brooklynLocations.push({name: "Bunk Sandwiches ", description:" Williamsburg, all day breakfast sandwiches, also serves lunch and dinner"});
+    			brooklynLocations.push({name: "Suzume ", description:" Williamsburg, serves a wild array of different foods, and good cocktails, Japanese and ramen"});
+    			brooklynLocations.push({name: "Peaches ", description:" classic American with southern style, Stuyvesant"});
+    			brooklynLocations.push({name: "Hothouse ", description:" southern food, Nashville style hot chicken, Brooklyn"});
+    			brooklynLocations.push({name: "Little Brother BBQ ", description:" Clinton hill, no fuss"});
+    			brooklynLocations.push({name: "Marietta ", description:" Brooklyn, southern food, same ownders as Peaches and The Hothouse"});
+    			brooklynLocations.push({name: "Beast of Bourbon ", description:" Brooklyn BBQ"});
+    			brooklynLocations.push({name: "Greenpoint Fish & Lobster Co. ", description:" fresh oysters, mussels, lobster, right next to McCarren Park"});
+    			brooklynLocations.push({name: "Syndicated ", description:" new Bushwick movie theater/restaurant/bar"});
+    			brooklynLocations.push({name: "Grand Army ", description:" cocktails and fancy bar eats in Boerum Hill"});
+    			brooklynLocations.push({name: "Kings County Distillery Whiskey Garden ", description:" good for day trip to drink and rotating eats, in brooklyn navy yard"});
+    			brooklynLocations.push({name: "Nowadays ", description:" mister sunday people opened up an outdoor backyard to eat drink and play ping pong and bocce"});
+    			brooklynLocations.push({name: "Vinegar Hill ", description:" outdoor dining in Brooklyn, romantic"});
+    			brooklynLocations.push({name: "Blue Collar Burger ", description:" get the double cheeseburger, Williamsburg"});
+    			brooklynLocations.push({name: "Boobie Trap ", description:" Bushwick, fun bar, boobs everywhere"});
+    			brooklynLocations.push({name: "Do or Dive ", description:" Bedstuy bar with rooftop"});
     			return brooklynLocations
     		}
 

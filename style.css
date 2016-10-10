@@ -11,3 +11,13 @@
 #navigation li {
 	display: inline;
 }
+
+button {
+	color: green;
+	background-color: red;
+}
+
+button.active {
+	color: blue;
+	background-color: purple;
+}
